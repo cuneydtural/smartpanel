@@ -23,14 +23,14 @@ class ProductTablosuEklendi extends Migration
             $table->longText('content')->nullable();
             $table->integer('brand_id')->nullable();
             $table->integer('price')->unsigned();
-            $table->integer('discount');
+            $table->integer('discount')->nullable();
             $table->integer('installment')->unsigned();
             $table->integer('vat_included')->unsigned();
-            $table->integer('barcode');
+            $table->integer('barcode')->nullable();
             $table->integer('quantity')->unsigned();
-            $table->integer('quantit_type')->unsigned();
             $table->integer('list_id')->unsigned()->default('0');
             $table->integer('active')->unsigned()->default('1');
+            $table->string('quantity_type')->nullable();
             $table->string('locale')->default('tr')->index();
             $table->timestamps();
         });

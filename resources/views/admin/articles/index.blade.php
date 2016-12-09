@@ -8,7 +8,7 @@
 
     @section('page-header')
 
-            <!-- Page header -->
+    <!-- Page header -->
     <div class="page-header">
         <div class="page-header-content">
             <div class="page-title">
@@ -18,8 +18,7 @@
 
             <div class="heading-elements">
                 <div class="heading-btn-group">
-                    <a href="{{ route('admin.articles.create') }}" class="btn btn-link btn-float has-text"><i
-                                class="icon-plus3 text-primary"></i><span>Yazı Ekle</span></a>
+                    <a href="{{ route('admin.articles.create') }}" class="btn btn-link btn-float has-text"><i class="icon-plus3 text-primary"></i><span>Yazı Ekle</span></a>
                 </div>
             </div>
         </div>

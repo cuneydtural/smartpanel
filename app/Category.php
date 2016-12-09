@@ -117,5 +117,45 @@ class Category extends Node
     {
         return $this->hasOne(CategoryLocale::class, 'category_id', 'id')->where('locale', App::getLocale());
     }
+    
+
+    /**
+     * @param string $default
+     * @return array
+     */
+    public static function getProductCategories($default = "Kategori Seçiniz!")
+    {
+        $lists = self::where('slug', '=', 'urun-kategorileri')->first()->getDescendants();
+
+        foreach ($lists as $list) {
+            $val[] = str_repeat('-', $list->depth ).' '.self::getLocaleCategories($list);
+            $key[] = $list->id;
+        }
+
+        $list = array_combine($key, $val);
+        if ($default) $list[""] = $default;
+        return $list;
+    }
+
+
+    /**
+     * @param string $default
+     * @return array
+     */
+    public static function getBrands($default = "Kategori Seçiniz!")
+    {
+        $lists = self::where('slug', '=', 'markalar')->first()->getDescendants();
+
+        if(count($lists)) {
+            foreach ($lists as $list) {
+                $val[] = str_repeat('-', $list->depth ).' '.self::getLocaleCategories($list);
+                $key[] = $list->id;
+            }
+            $list = array_combine($key, $val);
+        }
+
+        if ($default) $list[""] = $default;
+        return $list;
+    }
 
 }

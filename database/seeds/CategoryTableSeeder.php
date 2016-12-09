@@ -91,5 +91,12 @@ class CategoryTableSeeder extends Seeder
             'active' => '0',
             'list_id' => '4',
         ]);
+        
+        $root->children()->create([
+            'name' => 'Ürün Kategorileri',
+            'slug' => 'urun-kategorileri',
+            'active' => '0',
+            'list_id' => '3',
+        ]);
     }
 }

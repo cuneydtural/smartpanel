@@ -240,6 +240,11 @@ class ArticleController extends Controller
         }
     }
 
+    /**
+     * @param $pivot_id
+     * @param $source_id
+     * @return mixed
+     */
     public function setShowcase($pivot_id, $source_id) {
 
         // Clear
