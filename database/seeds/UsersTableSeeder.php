@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
                 'last_name' => 'Kullanıcı',
                 'email' => 'demo@demo.com',
                 'password' => bcrypt('demo'),
-                'image' => 'demo-kullanicisi-20091609.png',
+                'image' => 'demo-kullanici-09121611.jpg',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'permissions' => '{"superuser":true}',
