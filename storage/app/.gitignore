@@ -1,0 +1,4 @@
+*
+!public/
+!laravel-google-analytics/
+!.gitignore

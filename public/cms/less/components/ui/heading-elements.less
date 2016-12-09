@@ -1,0 +1,659 @@
+/* ------------------------------------------------------------------------------
+*
+*  # Heading elmeents
+*
+*  Display default and custom components in page header and panel heading
+*
+*  Version: 1.2
+*  Latest update: Mar 10, 2016
+*
+* ---------------------------------------------------------------------------- */
+
+
+// Base
+// -------------------------
+
+// Heading elements toggler
+.heading-elements-toggle,
+.breadcrumb-elements-toggle {
+    cursor: pointer;
+    display: block;
+    line-height: 1;
+    position: absolute;
+    top: 50%;
+    margin-top: -(@icon-font-size / 2);
+
+    // Inherit colors
+    &,
+    &:hover,
+    &:focus {
+        color: inherit;
+    }
+
+    // Remove top edge frop icons
+    > i {
+        top: 0;
+    }
+
+    // Hide on desktop
+    @media (min-width: @screen-sm-min) {
+        display: none;
+    }
+}
+
+// Heading toggler position
+.heading-elements-toggle {
+    right: @grid-gutter-width;
+}
+
+// Breadcrumb toggler position
+.breadcrumb-elements-toggle {
+    right: @grid-gutter-width;
+
+    .breadcrumb-line-component & {
+        right: @content-padding-base;
+    }
+}
+
+// Heading elements base
+.heading-elements {
+    background-color: inherit;
+    position: absolute;
+    top: 50%;
+    right: @grid-gutter-width;
+    height: @input-height-base;
+    margin-top: -(@input-height-base / 2);
+}
+
+
+//
+// Inside panel
+//
+
+// Inside panel body
+.panel-body {
+    > .heading-elements {
+        top: 0;
+        margin-top: (@input-height-base - @content-padding-large - 2);
+        z-index: 10;
+    }
+
+    // Mobile view
+    @media (max-width: @screen-xs-max) {
+        > .heading-elements-toggle {
+            top: @panel-body-padding;
+            margin-top: 0;
+        }
+
+        > .heading-elements.visible {
+            top: ((@panel-body-padding * 2) + @icon-font-size);
+            background-color: @panel-bg;
+        }
+    }
+}
+
+// Inside panel footer
+.panel-footer {
+    > .heading-elements {
+        @media (min-width: @screen-sm-min) {
+            position: static;
+            margin-top: 0;
+        }
+    }
+
+    // Mobile view
+    @media (max-width: @screen-xs-max) {
+        > .heading-elements > .pull-right {
+            float: none!important;
+        }
+
+        // Toggle button
+        .heading-elements-toggle {
+            position: static;
+            padding-top: @content-padding-small;
+            padding-bottom: @content-padding-small;
+            margin-top: 0;
+            display: block;
+            text-align: center;
+        }
+    }
+}
+
+// Inside bordered panel footer
+.panel-footer-bordered {
+    @media (min-width: @screen-sm-min) {
+        .heading-elements {
+            margin-left: -(@content-padding-large);
+        }
+    }
+}
+
+
+//
+// Heading thumbnails
+//
+
+.heading-thumbnails {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+
+    // Items
+    > li {
+        position: relative;
+        display: inline-block;
+        font-size: @font-size-base;
+
+        // Multiple items
+        + li {
+            margin-left: 10px;
+        }
+
+        // Images
+        img {
+            height: auto;
+            max-height: @input-height-base;
+            max-width: 100%;
+            border-radius: 100px;
+        }
+
+        // Labels and badges
+        .label,
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            border: 2px solid @panel-footer-bg;
+
+            // Inside transparent panel footer
+            .panel-default > .panel-heading &,
+            .panel-footer-transparent & {
+                border-color: @panel-bg;
+            }
+        }
+
+        // Status mark
+        .status-mark {
+            position: absolute;
+            top: 0;
+            right: 0;
+            box-shadow: 0 0 0 2px @panel-footer-bg;
+
+            // Add background color if circle
+            &[class*=border-] {
+                background-color: @panel-footer-bg;
+
+                // Inside transparent panel footer
+                .panel-default > .panel-heading &,
+                .panel-footer-transparent & {
+                    background-color: @panel-bg;
+                }
+            }
+
+            // Inside transparent panel footer
+            .panel-default > .panel-heading &,
+            .panel-footer-transparent & {
+                background-color: @panel-bg;
+            }
+        }
+    }
+}
+
+
+// Elements
+// -------------------------
+
+.heading-elements {
+
+    // Element's horizontal spacing
+    .heading-btn + .heading-btn,
+    .page-header & .icons-list > li + li,
+    .thumbnail-heading & .icons-list > li + li {
+        margin-left: (@content-padding-large / 2);
+    }
+
+    // Button link inside dark page header
+    .page-header-inverse & {
+        .btn-link {
+            color: #fff;
+        }
+    }
+
+    // List
+    .list-inline {
+        margin-bottom: 0;
+    }
+
+    // Remove margin from paginations
+    .pagination,
+    .pager {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    // Breadcrumb inside page header
+    .breadcrumb {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    // Align text left in panel tabs/pills
+    &.panel-nav {
+        .nav > li > a {
+            text-align: left;
+        }
+    }
+
+    // Custom date range display
+    .daterange-custom {
+        margin-top: ((@input-height-base - 28px) / 2); // half of elements general height - font size
+    }
+
+    // Button group
+    .heading-btn-group {
+        font-size: 0;
+
+        > .btn + .btn:not(.btn-link) {
+            margin-left: (@content-padding-large / 2);
+        }
+    }
+
+    // Hide elements on mobile
+    @media (max-width: @screen-xs-max) {
+        text-align: center;
+
+        // Add vertical spacing
+        .heading-text,
+        .heading-btn,
+        .heading-btn-group > .btn,
+        .ui-slider,
+        .noui-slider,
+        .nav-tabs,
+        .nav-pills,
+        .pagination,
+        .progress,
+        .icons-list,
+        .pager,
+        .breadcrumb,
+        .daterange-custom,
+        .heading-thumbnails,
+        .heading-form .form-group,
+        > .btn-group {
+            margin-bottom: @line-height-computed;
+        }
+
+        // Heading text
+        .heading-text:not(.label):not(.badge) {
+            display: block;
+        }
+
+        // Make selects full width
+        .select2-container,
+        .selectboxit-container,
+        .selectboxit-options,
+        .multiselect + .btn-group,
+        .bootstrap-select {
+            width: 100%!important;
+        }
+
+        // Static position
+        .input-group,
+        .input-group-btn,
+        .btn-group,
+        .dropdown,
+        .dropup {
+            position: static;
+        }
+
+        // Make dropdown menus full width
+        .dropdown-menu {
+            left: 0;
+            right: 0;
+            margin-top: 0;
+            .border-top-radius(0);
+        }
+    }
+
+
+    // Make them visible starting from tablet
+    @media (min-width: @screen-sm-min) {
+
+        // Make them inline
+        .heading-text,
+        .heading-btn,
+        .ui-slider,
+        .noui-slider,
+        .nav-tabs,
+        .nav-pills,
+        .pagination,
+        .progress,
+        .icons-list,
+        .breadcrumb,
+        .pager,
+        .heading-form,
+        .daterange-custom,
+        .heading-thumbnails,
+        > .btn-group {
+            float: left;
+            margin-left: @content-padding-large;
+        }
+
+        // Heading text
+        .heading-text {
+            display: inline-block;
+
+            & + .heading-text {
+                margin-left: @content-padding-large;
+            }
+        }
+
+        // Elements width
+        .selectbox-fixed + .selectboxit-container,
+        .selectbox-fixed + .selectboxit-options,
+        .progress,
+        .ui-slider,
+        .noui-slider,
+        .input-group,
+        .selectboxit-container .selectboxit-options,
+        .uploader,
+        .heading-form .form-control {
+            width: 220px;
+        }
+
+
+        // Elements sizes spacing
+        // ------------------------------
+
+        // Small elements corrections
+        .select-sm,
+        .input-sm,
+        .input-group-sm,
+        .uploader-sm,
+        .pagination-sm,
+        .pager-sm,
+        .selectbox-sm + .selectboxit-container,
+        .btn-sm,
+        .btn-group-sm > .btn {
+            margin-top: (@input-height-base - @input-height-small) / 2;
+        }
+
+        // Mini elements corrections
+        .select-xs,
+        .input-xs,
+        .input-group-xs,
+        .uploader-xs,
+        .pagination-xs,
+        .pager-xs,
+        .selectbox-xs + .selectboxit-container,
+        .btn-xs,
+        .btn-group-xs > .btn {
+            margin-top: (@input-height-base - @input-height-mini) / 2;
+        }
+
+        // Floating buttons
+        .btn-float {
+            margin-top: (((@input-height-base - ((@btn-float-padding * 2) + @icon-font-size + 2)) / 2) - 1); // Difference between base height and button height
+
+            // If has text
+            &.has-text {
+                margin-top: (((@input-height-base - ((@btn-float-padding * 2) + @icon-font-size + @line-height-computed + 5)) / 2) - 1); // Difference between base height and button height with text
+            }
+
+            // If float link
+            &.btn-link {
+                margin-top: (((@input-height-base - (@icon-font-size + @line-height-computed + (@btn-float-padding * 2) - 6)) / 2) - 1);
+            }
+        }
+
+        // Sliders
+        .ui-slider,
+        .noui-slider {
+            margin-top: ((@input-height-base - @slider-base-size) / 2);
+
+            &-lg {
+                margin-top: ((@input-height-base - @slider-large-size) / 2);
+            }
+
+            &-sm {
+                margin-top: ((@input-height-base - @slider-small-size) / 2);
+            }
+
+            &-xs {
+                margin-top: ((@input-height-base - @slider-mini-size) / 2);
+            }
+        }
+
+        // Progress bars
+        .progress {
+            margin-top: ((@input-height-base - @progress-base-height) / 2);
+
+            // Large
+            &-lg {
+                margin-top: ((@input-height-base - @progress-large-height) / 2);
+            }
+
+            // Small
+            &-sm {
+                margin-top: ((@input-height-base - @progress-small-height) / 2);
+            }
+
+            // Mini
+            &-xs {
+                margin-top: ((@input-height-base - @progress-mini-height) / 2);
+            }
+
+            // Tiny
+            &-xxs {
+                margin-top: ((@input-height-base - @progress-tiny-height) / 2);
+            }
+
+            // Micro
+            &-micro {
+                margin-top: ((@input-height-base - @progress-micro-height) / 2);
+            }
+        }
+
+        // Icons list
+        .icons-list {
+            margin-top: ((@input-height-base - @icon-font-size) / 2);
+        }
+
+        // Text
+        .heading-text {
+            margin-top: ((@input-height-base - @line-height-computed) / 2);
+        }
+
+        // Panel navs
+        &.panel-nav {
+
+            // Navs
+            > .nav {
+                margin-bottom: 0;
+                margin-top: ((@input-height-base - (((@padding-base-vertical + 2) * 2) + @line-height-computed)) / 2);
+            }
+
+            // Tabs
+            > .nav-tabs {
+                border-bottom: 0;
+
+                &.nav-tabs-bottom > li.active > a:after {
+                    background-color: transparent;
+                }
+            }
+
+            // Small pills
+            > .nav-sm {
+                margin-top: ((@input-height-base - ((@padding-small-vertical * 2) + @line-height-computed)) / 2);
+            }
+
+            // Mini pills
+            > .nav-xs {
+                margin-top: ((@input-height-base - (((@padding-xs-vertical - 2) * 2) + @line-height-computed)) / 2);
+            }
+        }
+    }
+}
+
+
+// Heading form
+// -------------------------
+
+.heading-form {
+
+    // Form group
+    .form-group {
+        margin-bottom: 0;
+    }
+
+    // Switchery
+    .checkbox-switchery {
+        &,
+        &[class*="switchery-"] {
+            margin-bottom: 0;
+        }
+    }
+
+    // Input group
+    .input-group {
+        max-width: 220px;
+
+        // Inputs
+        .form-control {
+            width: 100%;
+            margin-top: 0;
+        }
+
+        // Buttons
+        &.input-group-sm .btn,
+        &.input-group-xs .btn {
+            margin-top: 0;
+        }
+    }
+
+    // Setup desktop view
+    @media (min-width: @screen-sm-min) {
+        .form-group {
+            float: left;
+
+            // Multiple groups
+            & + .form-group {
+                margin-left: @content-padding-base;
+            }
+        }
+
+        // Radios and checkboxes
+        .checkbox-inline,
+        .radio-inline {
+            margin-top: ((@input-height-base - @line-height-computed) / 2);
+        }
+
+        // Checkbox switch
+        .checkbox-switch {
+
+            // Those 2 pixels that are used in Switch styles as negative top margin. In fact, switch height is equal to heading elements container height.
+            // They will be added below to calculate the difference
+            margin-top: 2px;
+
+            // Small
+            &-sm {
+                margin-top: ((@input-height-base - @input-height-small) / 2) + 2;
+            }
+
+            // Mini
+            &-xs {
+                margin-top: ((@input-height-base - @input-height-mini) / 2) + 2;
+            }
+        }
+    }
+}
+
+
+// Toggle elements visibility
+// ------------------------------
+
+@media (max-width: @screen-xs-max) {
+
+    // Heading elements
+    .heading-elements,
+    .breadcrumb-elements {
+        display: none;
+
+        // Show on click
+        &.visible {
+            display: block;
+            margin-top: 0;
+            top: 100%;
+            height: auto;
+            left: 0;
+            right: 0;
+            padding: @content-padding-large;
+            padding-bottom: 0;
+            border-top: 1px solid @panel-default-border;
+            border-bottom: 1px solid @panel-default-border;
+            z-index: (@zindex-navbar - 3);
+        }
+    }
+
+    // Heading elements inside colored panel
+    .panel[class*=bg-],
+    .panel-heading[class*=bg-] {
+        .heading-elements.visible {
+            border-color: fade(#fff, 50%);
+            left: 0;
+            right: 0;
+            background-color: inherit;
+        }
+    }
+
+    // Page header elements
+    .page-header {
+        .heading-elements {
+            &.visible {
+                background-color: @body-bg;
+                left: 0;
+                right: 0;
+                border-color: darken(@body-bg, 10%);
+                z-index: (@zindex-navbar + 2);
+            }
+        }
+        
+        // Default page header
+        &-default {
+            .heading-elements.visible {
+                background-color: inherit;
+                border-color: @panel-default-border;
+            }
+        }
+
+        // Inversed page header
+        &-inverse {
+            .heading-elements.visible {
+                background-color: inherit;
+                border-color: fade(#fff, 10%);
+            }
+        }
+    }
+
+    // Panel footer elements
+    .panel-footer-transparent {
+        .heading-elements {
+            &.visible {
+                background-color: @panel-bg;
+            }
+        }
+    }
+
+    // Breadcrumb elements
+    .breadcrumb-elements.visible {
+        background-color: inherit;
+        padding: 0;
+        z-index: 9;
+        border-width: 1px 0;
+        
+        // Inside component
+        .breadcrumb-line-component & {
+            border-width: 1px;
+        }
+    }
+}
