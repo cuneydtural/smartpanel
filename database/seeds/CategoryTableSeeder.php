@@ -85,11 +85,18 @@ class CategoryTableSeeder extends Seeder
             'list_id' => '0',
         ]);
 
-        $root->children()->create([
+        $brands = $root->children()->create([
             'name' => 'Markalar',
             'slug' => 'markalar',
             'active' => '0',
             'list_id' => '4',
+        ]);
+
+        $brands->children()->create([
+            'name' => 'Marka 1',
+            'slug' => 'marka 1',
+            'active' => '0',
+            'list_id' => '0',
         ]);
         
         $root->children()->create([

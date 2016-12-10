@@ -127,12 +127,15 @@ class Category extends Node
     {
         $lists = self::where('slug', '=', 'urun-kategorileri')->first()->getDescendants();
 
-        foreach ($lists as $list) {
-            $val[] = str_repeat('-', $list->depth ).' '.self::getLocaleCategories($list);
-            $key[] = $list->id;
-        }
+        if(count($lists)) {
+            foreach ($lists as $list) {
+                $val[] = str_repeat('-', $list->depth ).' '.self::getLocaleCategories($list);
+                $key[] = $list->id;
+            }
 
-        $list = array_combine($key, $val);
+            $list = array_combine($key, $val);
+        }
+        
         if ($default) $list[""] = $default;
         return $list;
     }

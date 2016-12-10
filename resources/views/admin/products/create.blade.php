@@ -144,7 +144,7 @@
                 <div class="form-group">
                     {{ Form::label('discount', 'İndirim Oranı %', ['class' => 'control-label col-lg-3']) }}
                     <div class="col-lg-9">
-                        {{ Form::text('discount', old('discount'), ['class' => 'form-control']) }}
+                        {{ Form::text('discount', (isset($product) ? old('discount') : 0), ['class' => 'form-control']) }}
                         <span class="label label-danger">{{ $errors->first('discount') }}</span>
                     </div>
                 </div>
