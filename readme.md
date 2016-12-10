@@ -14,6 +14,7 @@
 
 ```sh
 $ git clone https://github.com/cuneydtural/smartpanel.git
+$ cd smartpanel
 $ cp .env.example .env
 $ chmod -R 777 app/storage
 $ chmod -R 777 public/photos
