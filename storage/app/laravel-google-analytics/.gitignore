@@ -1,0 +1,4 @@
+*
+!google-cache/
+!service-account-credentials.json
+!.gitignore

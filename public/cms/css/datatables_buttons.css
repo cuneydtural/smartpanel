@@ -1,0 +1,17 @@
+.dataTables_wrapper {
+    padding:10px;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    margin-top:5px;
+}
+
+
+.dataTables_wrapper .dt-buttons {
+    margin-top:5px;
+    margin-right:5px;
+}
+
+button.dt-button, div.dt-button, a.dt-button {
+    margin-left:8px;
+}
