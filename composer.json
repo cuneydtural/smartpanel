@@ -28,7 +28,6 @@
         "symfony/css-selector": "~3.2",
         "symfony/dom-crawler": "~3.2",
         "itsgoingd/clockwork": "~1.12"
-       
     },
     "autoload": {
         "classmap": [
