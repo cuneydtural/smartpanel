@@ -17,8 +17,8 @@ class Store extends Model
     public static function categories()
     {
         $list = [
-            '1' => 'Satış Noktalarımız',
-            '3' => 'Servislerimiz',
+            '1' => 'Şubeler',
+            '3' => 'Genel Merkez',
         ];
         return $list;
     }

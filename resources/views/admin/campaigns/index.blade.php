@@ -89,7 +89,8 @@
                     <th><input value="1" type="checkbox" id="select-all"></th>
                     <th>Id</th>
                     <th>Aktif</th>
-                    <th>Adı Soyadı</th>
+                    <th>Kampanya</th>
+                    <th>Türü</th>
                     <th>Güncelleme Tar.</th>
                     <th>İşlem</th>
                 </tr>
@@ -158,6 +159,7 @@
                         {data: 'id', name: 'id', orderable: true, searchable: true},
                         {data: 'active', name: 'active'},
                         {data: 'name', name: 'name', exportable: true},
+                        {data: 'type', name: 'type', exportable: true},
                         {data: 'updated_at', name: 'updated_at'},
                         {data: 'actions', name: 'actions', orderable: false, searchable: false, exportable: true}
                     ],

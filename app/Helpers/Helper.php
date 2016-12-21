@@ -110,4 +110,19 @@ class Helper
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d.m.Y');
     }
 
+    public static function percentageDiscount($price, $percent)
+    {
+        if($price <> 0 && $percent <> 0) {
+            $response =  $price - ($price * ($percent / 100));
+        } else {
+            $response = 0;
+        }
+        return $response;
+    }
+
+    public static function moneyFormat($val)
+    {
+        return number_format($val / 100, 0, ',', '.');
+    }
+
 }

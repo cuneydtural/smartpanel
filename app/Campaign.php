@@ -3,10 +3,23 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Campaign extends Model
 {
-    protected $fillable = ['name', 'discount', 'date_start', 'date_end'];
+    protected $fillable = ['name', 'discount', 'date_start', 'date_end', 'type', 'coupon_keyword'];
+
+    /**
+     * @return array
+     */
+    public static function campaignType()
+    {
+        $list = [
+            '1' => '% İndirim',
+            '2' => 'İndirim Kuponu',
+        ];
+        return $list;
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -24,4 +37,7 @@ class Campaign extends Model
         return $this->belongsToMany(File::class, 'files_relations', 'source_id', 'file_id')
             ->withPivot('id','showcase', 'active', 'list_id', 'active');
     }
+
+
+    
 }

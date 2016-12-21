@@ -56,6 +56,8 @@ class CampaignController extends Controller
             'discount' => $request->input('discount'),
             'date_start' => $request->input('date_start'),
             'date_end' => $request->input('date_end'),
+            'type' => $request->input('type'),
+            'coupon_keyword' => $request->input('coupon_keyword'),
             'locale' => App::getLocale(),
             'active' => $request->input('active'),
         ]);

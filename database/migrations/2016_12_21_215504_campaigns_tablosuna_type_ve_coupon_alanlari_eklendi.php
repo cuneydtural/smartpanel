@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class FormTablosunaNotesAlaniEklendi extends Migration
+class CampaignsTablosunaTypeVeCouponAlanlariEklendi extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class FormTablosunaNotesAlaniEklendi extends Migration
      */
     public function up()
     {
-        Schema::table('forms', function($table){
-            $table->longText('notes')->nullable();
+         Schema::table('campaigns', function($table){
+            $table->string('coupon_keyword')->default(1);
+            $table->integer('type')->nullable();
         });
     }
 
@@ -25,8 +26,9 @@ class FormTablosunaNotesAlaniEklendi extends Migration
      */
     public function down()
     {
-        Schema::table('forms', function($table){
-            $table->dropColumn('notes');
+        Schema::table('campaigns', function($table){
+            $table->dropColumn('coupon_keyword');
+            $table->dropColumn('type');
         });
     }
 }

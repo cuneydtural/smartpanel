@@ -7,7 +7,7 @@
 
     @section('page-header')
 
-            <!-- Page header -->
+    <!-- Page header -->
     <div class="page-header">
         <div class="page-header-content">
             <div class="page-title">
@@ -136,16 +136,36 @@
                 <div class="form-group">
                     {{ Form::label('price', 'Tutar', ['class' => 'control-label col-lg-3']) }}
                     <div class="col-lg-9">
-                        {{ Form::text('price', old('price'), ['class' => 'form-control']) }}
+                        {{ Form::text('price', old('price'), ['class' => 'form-control price-format']) }}
                         <span class="label label-danger">{{ $errors->first('price') }}</span>
                     </div>
                 </div>
 
                 <div class="form-group">
+                    {{ Form::label('discount_type', 'İndirim Seçenekleri', ['class' => 'control-label col-lg-3']) }}
+                    <div class="col-lg-9">
+                        @foreach(\App\Product::discountType() as $key => $value)
+                            <label class="radio-inline">
+                                {{ Form::radio('discount_type', $key, old('discount_type'), ['class' => 'styled', 'v-model' => 'discount_type']) }} {{ $value }}
+                            </label><br>
+                        @endforeach
+                        <span class="label label-danger">{{ $errors->first('discount_type') }}</span>
+                    </div>
+                </div>
+
+                <div class="form-group" v-show="default">
                     {{ Form::label('discount', 'İndirim Oranı %', ['class' => 'control-label col-lg-3']) }}
                     <div class="col-lg-9">
-                        {{ Form::text('discount', (isset($product) ? old('discount') : 0), ['class' => 'form-control']) }}
+                        {{ Form::text('discount', old('discount'), ['class' => 'form-control spinner-basic']) }}
                         <span class="label label-danger">{{ $errors->first('discount') }}</span>
+                    </div>
+                </div>
+
+                <div class="form-group" v-show="special_price">
+                    {{ Form::label('special_price', 'Özel Fiyat', ['class' => 'control-label col-lg-3']) }}
+                    <div class="col-lg-9">
+                        {{ Form::text('special_price', old('special_price'), ['class' => 'form-control price-format ']) }}
+                        <span class="label label-danger">{{ $errors->first('special_price') }}</span>
                     </div>
                 </div>
 
@@ -153,7 +173,7 @@
                     {{ Form::label('quantity', 'Stok Adedi', ['class' => 'control-label col-lg-3']) }}
                     <div class="col-lg-9 pad-0">
                         <div class="col-md-6">
-                            {{ Form::text('quantity', old('quantity'), ['class' => 'form-control']) }}
+                            {{ Form::text('quantity', old('quantity'), ['class' => 'form-control spinner-basic']) }}
                             <span class="label label-danger">{{ $errors->first('quantity') }}</span>
                         </div>
                         <div class="col-md-6">
@@ -240,12 +260,12 @@
                                         <div class="thumb">
                                             <img src="/{{ $photos->thumb_path.$photos->name }}" alt="">
                                             <div class="caption-overflow">
-										<span>
-											<a href="/{{ $photos->path.$photos->name }}" data-popup="lightbox" rel="gallery"
+                                        <span>
+                                            <a href="/{{ $photos->path.$photos->name }}" data-popup="lightbox" rel="gallery"
                                                class="btn border-white text-white btn-flat btn-icon btn-rounded"><i class="icon-search4"></i></a>
-											<a href="#" data-photo-id="{{ $photos->id }}" data-product-id="{{ $product->id }}" class="remove-photo btn border-white text-white btn-flat btn-icon btn-rounded ml-5"><i class="icon-cross2"></i></a>
+                                            <a href="#" data-photo-id="{{ $photos->id }}" data-product-id="{{ $product->id }}" class="remove-photo btn border-white text-white btn-flat btn-icon btn-rounded ml-5"><i class="icon-cross2"></i></a>
                                             <a href="{{ route('admin.products.showcase.set', ['id' => $photos->pivot->id, 'source_id' => $product->id]) }}" class="btn border-white text-white btn-flat btn-icon btn-rounded ml-5"><i class="icon-star-full2"></i></a>
-										</span>
+                                        </span>
                                             </div>
                                         </div>
                                         <div class="caption">
@@ -295,11 +315,40 @@
     <script type="text/javascript" src="/cms/js/pages/form_validation.js"></script>
     <script type="text/javascript" src="/cms/js/pages/form_inputs.js"></script>
     <script type="text/javascript" src="/cms/js/plugins/uploaders/fileinput.min.js"></script>
+    <script type="text/javascript" src="/cms/js/core/libraries/jquery_ui/widgets.min.js"></script>
+    <script type="text/javascript" src="/cms/js/vue.min.js"></script>
+    <script type="text/javascript" src="/cms/js/jquery.priceformat.min.js"></script>
+
     <!-- /theme JS files -->
 
     <script>
 
+        $('.price-format').priceFormat({
+            prefix: '',
+            thousandsSeparator: ''
+        });
+
+        // Basic spinner
+        $(".spinner-basic").spinner({
+            min: 0,
+        });
+
         $(function(){
+
+            new Vue({
+                el: '.vue-link',
+                data: {
+                    discount_type: 0,
+                },
+                computed: {
+                    default: function(){
+                        return this.discount_type.startsWith("1")
+                    },
+                    special_price: function(){
+                        return this.discount_type.startsWith("2")
+                    },
+                }
+            });
 
             // Fancybox
             $('[data-popup="lightbox"]').fancybox({
@@ -397,7 +446,6 @@
                     });
                 }
             });
-
         });
     </script>
 

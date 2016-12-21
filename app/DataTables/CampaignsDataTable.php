@@ -32,6 +32,14 @@ class CampaignsDataTable extends DataTable
                     return '<span class="label label-flat border-success text-success-600">AKTİF</span>';
                 }
             })
+            ->addColumn('type', function ($campaign) {
+                if($campaign->type == 1) {
+                    return '% İndirim';
+                }
+                else if($campaign->type == 2) {
+                    return 'Kupon';
+                }
+            })
             ->addColumn('actions', function ($campaign) {
                 return '<td class="text-center">
                 <ul class="icons-list">

@@ -22,7 +22,7 @@ class ProductTablosuEklendi extends Migration
             $table->string('keywords')->nullable();
             $table->longText('content')->nullable();
             $table->integer('brand_id')->nullable()->default('0');
-            $table->integer('price')->unsigned();
+            $table->decimal('price', 5, 2);
             $table->integer('discount')->nullable()->default('0');
             $table->integer('installment')->unsigned();
             $table->integer('vat_included')->unsigned();

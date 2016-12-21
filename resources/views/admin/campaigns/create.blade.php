@@ -11,8 +11,7 @@
         <div class="page-header-content">
             <div class="page-title">
                 <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Kampanya Yönetimi</span>
-                    /
-                    @if(!isset($campaign)) Kampanya Ekle @else Kampanya Bilgileri @endif</h4>
+                    /@if(!isset($campaign)) Kampanya Ekle @else Kampanya Bilgileri @endif</h4>
             </div>
 
             <div class="heading-elements">
@@ -65,7 +64,7 @@
                 ]) }}
             @endif
 
-            <fieldset class="content-group vue-link">
+            <fieldset class="content-group vue-app">
 
                 <div class="form-group">
                     {{ Form::label('name', 'Kampanya Adı', ['class' => 'control-label col-lg-3']) }}
@@ -76,10 +75,30 @@
                 </div>
 
                 <div class="form-group">
+                    {{ Form::label('type', 'Kampanya Türü', ['class' => 'control-label col-lg-3']) }}
+                    <div class="col-lg-9">
+                        @foreach(\App\Campaign::campaignType() as $key => $value)
+                            <label class="radio-inline">
+                                {{ Form::radio('type', $key, old('type'), ['class' => 'styled', 'v-model' => 'type']) }} {{ $value }}
+                            </label><br>
+                        @endforeach
+                        <span class="label label-danger">{{ $errors->first('type') }}</span>
+                    </div>
+                </div>
+
+                <div class="form-group" v-show="default">
                     {{ Form::label('discount', 'İndirim %', ['class' => 'control-label col-lg-3']) }}
                     <div class="col-lg-9">
-                        {{ Form::text('discount', old('discount'), ['class' => 'form-control', 'required']) }}
+                        {{ Form::text('discount', old('discount'), ['class' => 'form-control spinner-basic', 'required']) }}
                         <span class="label label-danger">{{ $errors->first('discount') }}</span>
+                    </div>
+                </div>
+
+                <div class="form-group" v-show="coupon">
+                    {{ Form::label('coupon_keyword', 'Kupon Keyword', ['class' => 'control-label col-lg-3']) }}
+                    <div class="col-lg-9">
+                        {{ Form::text('coupon_keyword', old('name'), ['class' => 'form-control']) }}
+                        <span class="label label-danger">{{ $errors->first('coupon_keyword') }}</span>
                     </div>
                 </div>
 
@@ -88,7 +107,8 @@
                     <div class="col-lg-9">
                         <div class="input-group">
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-default btn-icon" id="date-btn-1"><i class="icon-calendar3"></i></button>
+                                <button type="button" class="btn btn-default btn-icon" id="date-btn-1"><i
+                                            class="icon-calendar3"></i></button>
                             </span>
                             {{ Form::text('date_start', old('date_start'), ['class' => 'form-control', 'id' => 'date-input-1', 'required']) }}
                         </div>
@@ -100,7 +120,8 @@
                     <div class="col-lg-9">
                         <div class="input-group">
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-default btn-icon" id="date-btn-2"><i class="icon-calendar3"></i></button>
+                                <button type="button" class="btn btn-default btn-icon" id="date-btn-2"><i
+                                            class="icon-calendar3"></i></button>
                             </span>
                             {{ Form::text('date_end', old('date_end'), ['class' => 'form-control', 'id' => 'date-input-2', 'required']) }}
                         </div>
@@ -166,9 +187,35 @@
     <script type="text/javascript" src="/cms/js/core/app.js"></script>
     <script type="text/javascript" src="/cms/js/pages/form_validation.js"></script>
     <script type="text/javascript" src="/cms/js/plugins/uploaders/fileinput.min.js"></script>
+    <script type="text/javascript" src="/cms/js/core/libraries/jquery_ui/widgets.min.js"></script>
+    <script type="text/javascript" src="/cms/js/vue.min.js"></script>
     <!-- /theme JS files -->
 
     <script>
+
+        // Basic spinner
+        $(".spinner-basic").spinner({
+            min: 0,
+        });
+
+        new Vue({
+            el: '.vue-app',
+            data: {
+                type: 1,
+            },
+            computed: {
+                default: function(){
+                    return this.type == 1;
+                },
+                coupon: function(){
+                    return this.type == 2;
+                },
+            }
+        });
+
+        // Select with search
+        $('.select-search').select2();
+
         // Basic example
         $('.listbox').bootstrapDualListbox();
 

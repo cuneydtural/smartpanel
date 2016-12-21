@@ -19,7 +19,7 @@
         "spatie/laravel-analytics": "2.2.*",
         "cviebrock/eloquent-sluggable": "^4.1",
         "laravelcollective/remote": "5.3.*",
-        "thujohn/twitter": "~2.0",
+        "thujohn/twitter": "~2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
