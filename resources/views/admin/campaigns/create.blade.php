@@ -89,7 +89,7 @@
                 <div class="form-group" v-show="default">
                     {{ Form::label('discount', 'İndirim %', ['class' => 'control-label col-lg-3']) }}
                     <div class="col-lg-9">
-                        {{ Form::text('discount', old('discount'), ['class' => 'form-control spinner-basic', 'required']) }}
+                        {{ Form::text('discount', old('discount'), ['class' => 'form-control spinner-basic']) }}
                         <span class="label label-danger">{{ $errors->first('discount') }}</span>
                     </div>
                 </div>
